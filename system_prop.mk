@@ -1,5 +1,5 @@
 #
-# System Properties for G2
+# System Properties for G Flex
 #
 
 # Audio
@@ -33,7 +33,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
     ro.opengles.version=196608 \
-    ro.sf.lcd_density=480
+    ro.sf.lcd_density=320
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \

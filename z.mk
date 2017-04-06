@@ -15,7 +15,7 @@
 #
 
 # Call common vendor
-$(call inherit-product-if-exists, vendor/lge/g2-common/g2-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/lge/z-common/z-common-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
@@ -54,12 +54,10 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -120,13 +118,13 @@ PRODUCT_COPY_FILES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    fstab.g2 \
-    init.g2.rc \
-    init.g2.power.rc \
-    init.g2.usb.rc \
-    init.recovery.g2.rc \
+    fstab.z \
+    init.z.rc \
+    init.z.power.rc \
+    init.z.usb.rc \
+    init.recovery.z.rc \
     set_baseband.sh \
-    ueventd.g2.rc
+    ueventd.z.rc
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
@@ -183,7 +181,7 @@ PRODUCT_PACKAGES += \
 
 # Recovery
 PRODUCT_PACKAGES += \
-    librecovery_updater_g2
+    librecovery_updater_z
 
 # RIL
 PRODUCT_PACKAGES += \
