@@ -46,6 +46,8 @@ on early-init
 on init
     export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libril.so|libril_shim.so
 
+    #/dev/block/platform/msm_sdcc.1/by-name/felica
+
     mkdir /persist 0771 system system
     mkdir /factory 0775 system system
     mkdir /persist-lg 0755 system system
@@ -65,6 +67,12 @@ on fs
     restorecon_recursive /sns
     restorecon_recursive /mpt
 
+    mkdir /felica 0775 system system
+
+    wait /dev/block/platform/msm_sdcc.1/by-name/felica
+    exec /system/bin/e2fsck -p /dev/block/platform/msm_sdcc.1/by-name/felica
+    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/felica /felica nosuid nodev barrier=1 noauto_da_alloc
+
     # Create directory for wifi
     mkdir /persist/wifi
     chown wifi system /persist/wifi
@@ -77,6 +85,20 @@ on fs
     chown system root /persist/sensors/sensors_settings
 
 on post-fs-data
+# LGE_CHANGE_S, 20130307, LGE-FeliCa@lge.com
+    chmod 0775 /felica
+    chown system system /felica
+    mkdir /felica/knife 0771 system system
+# LGE_CHANGE_S, 20130307, LGE-FeliCa@lge.com
+
+# [NFC_PORTING_FOR_DCM][S]
+    mkdir /felica/cflock 0771 nfclock nfclock
+
+#LGE_CHANGE_S, [NFC][sungwook.ahn@lge.com], 2013-02-20, NFC Bring up
+    symlink /dev/ttyHSL2 /dev/snfc_uart
+    #symlink /dev/i2c-0 /dev/snfc_i2c
+#LGE_CHANGE_E, [NFC][sungwook.ahn@lge.com], 2013-02-20, NFC Bring up
+
     # Create directory used by bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
