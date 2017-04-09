@@ -36,9 +36,11 @@ BOARD_CUSTOM_BOOTIMG_MK := device/lge/z-common/releasetools/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=z
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_SEPARATED_DT := true
+#BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x05000000 --tags_offset 0x00000100
-TARGET_KERNEL_SOURCE := kernel/lge/msm8974
+TARGET_PREBUILT_KERNEL := device/lge/$(TARGET_DEVICE)/zImage
+TARGET_PREBUILT_DTB := device/lge/$(TARGET_DEVICE)/dt.img
+#TARGET_KERNEL_SOURCE := kernel/lge/msm8974
 
 # Audio
 AUDIO_FEATURE_ENABLED_NEW_SAMPLE_RATE := true

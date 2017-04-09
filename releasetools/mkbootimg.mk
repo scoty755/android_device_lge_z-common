@@ -18,7 +18,8 @@ G2_DTS_FILES = $(wildcard $(TOP)/$(TARGET_KERNEL_SOURCE)/arch/arm/boot/dts/lge/m
 G2_DTS_FILE = $(lastword $(subst /, ,$(1)))
 DTB_FILE = $(addprefix $(KERNEL_OUT)/arch/arm/boot/,$(patsubst %.dts,%.dtb,$(call G2_DTS_FILE,$(1))))
 ZIMG_FILE = $(addprefix $(KERNEL_OUT)/arch/arm/boot/,$(patsubst %.dts,%-zImage,$(call G2_DTS_FILE,$(1))))
-KERNEL_ZIMG = $(KERNEL_OUT)/arch/arm/boot/zImage
+#KERNEL_ZIMG = $(KERNEL_OUT)/arch/arm/boot/zImage
+KERNEL_ZIMG = $(LOCAL_PATH)/../../$(TARGET_DEVICE)/zImage
 DTC = $(KERNEL_OUT)/scripts/dtc/dtc
 
 define append-g2-dtb
@@ -33,7 +34,8 @@ endef
 ## Build and run dtbtool
 BUMP := $(LOCAL_PATH)/open_bump.py
 DTBTOOL := $(HOST_OUT_EXECUTABLES)/dtbToolCM$(HOST_EXECUTABLE_SUFFIX)
-INSTALLED_DTIMAGE_TARGET := $(PRODUCT_OUT)/dt.img
+#INSTALLED_DTIMAGE_TARGET := $(PRODUCT_OUT)/dt.img
+INSTALLED_DTIMAGE_TARGET := $(LOCAL_PATH)/../../$(TARGET_DEVICE)/dt.img
 
 $(INSTALLED_DTIMAGE_TARGET): $(DTBTOOL) $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr $(INSTALLED_KERNEL_TARGET)
 	@echo -e ${CL_CYN}"Start DT image: $@"${CL_RST}

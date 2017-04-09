@@ -119,7 +119,9 @@ PRODUCT_COPY_FILES += \
 ifeq ($(RECOVERY_VARIANT),twrp)
 # TWRP specific build flags
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/root/etc/twrp.fstab:recovery/root/etc/recovery.fstab
+    $(LOCAL_PATH)/recovery/root/etc/twrp.fstab:recovery/root/etc/recovery.fstab \
+    $(LOCAL_PATH)/../$(TARGET_DEVICE)/zImage:kernel \
+    $(LOCAL_PATH)/../$(TARGET_DEVICE)/dt.img:dt.img
 else
 # Init
 PRODUCT_PACKAGES += \
