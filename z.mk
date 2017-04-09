@@ -116,6 +116,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/quipc.conf:system/etc/quipc.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf
 
+ifeq ($(RECOVERY_VARIANT),twrp)
+# TWRP specific build flags
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/recovery/root/etc/twrp.fstab:recovery/root/etc/recovery.fstab
+else
 # Init
 PRODUCT_PACKAGES += \
     fstab.z \
@@ -125,6 +130,7 @@ PRODUCT_PACKAGES += \
     init.recovery.z.rc \
     set_baseband.sh \
     ueventd.z.rc
+endif
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
